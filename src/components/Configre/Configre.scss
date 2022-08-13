@@ -1,0 +1,143 @@
+.configre {
+    width: 100%;
+    height: calc(100vh - 170px);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-left: 8px;
+    padding-top: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    &_header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 25px;
+        font-weight: 700;
+        font-size: 12px;
+        // color: #a3a3a3;
+        &_logo {
+            img,
+            svg {
+                width: 120px;
+                height: auto;
+            }
+        }
+        label {
+            word-break: break-word;
+        }
+    }
+    &_trims,
+    &_cameras,
+    &_packages {
+        width: 100%;
+        margin-bottom: 1.5em;
+        .selectWrapper {
+            .MuiInputBase-root {
+                border: 1px solid rgba(0, 0, 0, 0.42);
+                font-size: 0.8em;
+                &:hover {
+                    border: 1px solid rgba(0, 0, 0, 0.6);
+                }
+                .MuiSelect-root {
+                    padding-left: 1em;
+                }
+            }
+            .iconDropDown {
+                top: 2px !important;
+                right: 5px !important;
+            }
+        }
+        &-notDropdown {
+            pointer-events: none;
+            svg {
+                display: none;
+            }
+        }
+    }
+    .exteriorColors,
+    .interiorColors {
+        width: 85%;
+        margin-bottom: 10px;
+        &_title {
+            p {
+                margin-bottom: 15px;
+                padding: 0;
+                font-weight: 400;
+                line-height: 1;
+                // color: #a3a3a3;
+            }
+        }
+        &_multiple {
+            margin-bottom: 1.5em;
+            .MuiGrid-item {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 12px 0px;
+                padding-bottom: 0px;
+            }
+            .btnExteriorColor,
+            .btnInteriorColor {
+                width: 2.4em;
+                height: 2.4em;
+                display: block;
+                background: #fff;
+                border-radius: 50%;
+                span {
+                    background: transparent;
+                    svg {
+                        display: none;
+                        margin-top: 4px;
+                        font-size: 1.4em;
+                        // color: #0480d5;
+                        // mix-blend-mode: difference;
+                        // filter: invert(100%);
+                    }
+                }
+                &.active {
+                    span {
+                        svg {
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+        }
+        &_nameColor {
+            margin-bottom: 15px;
+            p {
+                font-size: 0.7em;
+                margin-top: 5px;
+                // color: #5c5c5c;
+            }
+        }
+    }
+    &_logout {
+        width: 100%;
+        margin-bottom: 0.5em;
+        padding-left: 1em;
+        // color: #d3d3d3;
+
+        p {
+            font-size: 0.7em;
+            span {
+                color: red;
+                cursor: pointer;
+            }
+        }
+    }
+}
+.lightTheme {
+    background: #ebebeb !important;
+    color: black !important;
+}
+// custom
+.MuiMenu-list {
+    .MuiListItem-root {
+        font-size: 0.8em;
+        padding-left: 1em;
+    }
+}
+.MuiPopover-paper {
+    border-radius: 0px;
+}

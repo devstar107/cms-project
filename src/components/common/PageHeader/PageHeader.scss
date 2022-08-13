@@ -1,0 +1,20 @@
+.pageHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 3rem;
+    @media (max-width: 420px) {
+        padding: 1rem;
+        flex-direction: column;
+    }
+    &_logo {
+        width: 11%;
+        max-width: 300px;
+        min-width: 100px;
+    }
+    &_userDetails {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,38 @@
+.commonTableWrapper {
+    width: 100%;
+    .table {
+        min-width: 700px;
+    }
+    .MuiTableHead-root {
+        border: 1px solid grey;
+        height: 50px;
+        .MuiTableCell-root {
+            border-bottom: none;
+            font-size: 1em;
+            text-transform: uppercase;
+            color: #8d8f92;
+        }
+    }
+    .MuiTableBody-root {
+        .MuiTableRow-root.row-hover {
+            cursor: pointer;
+            &:hover {
+                background: #001655;
+            }
+        }
+        .MuiTableRow-root.row-hover-disable {
+            cursor: default;
+            &:hover {
+                background: black;
+            }
+        }
+    }
+    .MuiTableCell-root {
+        padding: 0.8em 1em;
+        font-size: 1em;
+        font-family: 'Helvetica Neue';
+        color: #fff;
+        border-bottom: 1px solid grey;
+        text-align: center;
+    }
+}

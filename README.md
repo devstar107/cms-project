@@ -1,9 +1,5 @@
-<<<<<<< HEAD
+
 "# cms-project" 
-"# React_Ecommerce" 
-"# React_Ecommerce" 
-"# React_Ecommerce" 
-=======
 ## Available Scripts
 
 In the project directory, you can run:

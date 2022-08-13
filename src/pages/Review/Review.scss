@@ -1,0 +1,195 @@
+.light-theme {
+    background: #ebebeb !important;
+}
+.review {
+    min-height: 100vh;
+
+    .brand-logo {
+        display: flex;
+        justify-content: flex-end;
+        padding: 13px;
+        &_genesis_size {
+            img,
+            svg {
+                width: 13rem;
+                height: auto;
+            }
+        }
+        &_hyundai_size {
+            img,
+            svg {
+                width: 10rem;
+                height: auto;
+            }
+        }
+    }
+    .review-layout {
+        overflow: hidden;
+        .viewport_bar {
+            padding: 5px;
+            width: 100%;
+            margin-bottom: 2px;
+            display: flex;
+            background-color: #a36b4f;
+            align-items: center;
+            min-height: 40px;
+            .annotation-tools {
+                display: flex;
+            }
+            .version-number {
+                padding-left: 2rem;
+            }
+
+            &_version-select-genesis {
+                max-width: 9rem;
+                margin-bottom: 0;
+                .selectWrapper {
+                    width: 8.5rem;
+                    .MuiInputBase-root {
+                        font-size: 1em;
+                        text-transform: uppercase;
+
+                        &:hover {
+                            border: 1px solid rgba(0, 0, 0, 0.6);
+                        }
+                        .MuiSelect-root {
+                            padding-left: 1em;
+                        }
+                    }
+                    .MuiInputBase-input {
+                        background-color: white;
+                        color: #a67055;
+                        font-weight: 900;
+                    }
+                    .iconDropDown {
+                        top: 2px !important;
+                        right: 5px !important;
+                    }
+                }
+                &-notDropdown {
+                    pointer-events: none;
+                    svg {
+                        display: none;
+                    }
+                }
+            }
+            &_icon {
+                display: flex;
+                cursor: pointer;
+                svg {
+                    margin: 0 12px;
+                }
+            }
+            &_icon-compare {
+                cursor: pointer;
+                img {
+                    margin: 0 12px;
+                }
+            }
+        }
+        .viewport_bar-lightTheme {
+            background-color: #002856;
+        }
+
+        .config-tools {
+            float: left;
+            margin-right: 20px;
+            width: 13rem;
+
+            @media screen and (max-width: 413px) {
+                float: none;
+                margin-right: 0;
+                width: auto;
+                border: 0;
+            }
+        }
+        .car-images {
+            overflow: hidden;
+            min-height: 470px;
+            .viewport {
+                display: flex;
+                align-items: center;
+                // position: absolute;
+                // min-width: 100%;
+                width: 100%;
+                height: calc(100vh - 107px);
+                user-select: none;
+                overflow-y: scroll;
+                overflow: hidden;
+                // z-index: -1;
+                // padding-left: 1px;
+                // background-color: #c2c2c2;
+                background-color: white;
+                .single-car {
+                    width: 100%;
+                    // height: 100%;
+                    img {
+                        object-fit: contain;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .show-comment {
+                        position: absolute;
+                        width: 25rem;
+                        margin-left: 1rem;
+                        bottom: 25px;
+                    }
+                }
+                .single-view {
+                    width: 100%;
+                    height: 100%;
+                    background-position: center; /* Center the image */
+                    background-repeat: no-repeat; /* Do not repeat the image */
+                    background-size: cover; /* Resize the background image to cover the entire container */
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    &_loading {
+                        img {
+                            width: 4rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &_home-icon {
+        position: absolute;
+        top: auto;
+        bottom: 30px;
+        left: 31px;
+        cursor: pointer;
+        svg {
+            width: 42px !important;
+            height: 42px !important;
+        }
+    }
+    &_body-text {
+        text-transform: uppercase;
+        font-size: 1rem;
+        .selected-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .next-wrapper {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            .next-button {
+                background-color: #002856;
+                padding: 6px 1.5rem;
+                color: white;
+                border-radius: 1rem;
+            }
+        }
+    }
+    .projects-loader {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

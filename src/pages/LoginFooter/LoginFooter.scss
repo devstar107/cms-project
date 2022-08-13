@@ -1,0 +1,32 @@
+.login_footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 40px;
+  height: 95px;
+  display: flex;
+
+  grid-area: footer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .times {
+    width: 15vw;
+    justify-content: space-evenly;
+    display: flex;
+    color: #fff;
+    @media (max-width: 768px) {
+      width: 30vw;
+      justify-content: space-between;
+    }
+  }
+  .links {
+    padding: 0 30px;
+    p {
+      a {
+        color: #fff;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

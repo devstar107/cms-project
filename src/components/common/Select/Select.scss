@@ -1,0 +1,56 @@
+.commonSelect {
+    position: relative;
+    // color: #a3a3a3;
+    margin-bottom: 25px;
+    .MuiSelect-icon {
+        display: none;
+    }
+    .MuiFormLabel-root {
+        // color: #a3a3a3;
+        color: black;
+        font-weight: 550;
+        font-size: 18px;
+    }
+    .MuiInputBase-input {
+        // border: 1px solid #9d6848;
+        background-color: white;
+        // color: #a3a3a3;
+        color: black;
+    }
+
+    .selectWrapper {
+        // padding-left: 10px;
+        position: relative;
+        &-label {
+            margin-top: 26px;
+        }
+        .MuiInput-root {
+            width: 100%;
+        }
+        .iconDropDown {
+            position: absolute;
+            top: 5px;
+            right: 0;
+            pointer-events: none;
+            svg {
+                width: 0.8em;
+            }
+        }
+    }
+}
+.MuiPopover-root {
+    .MuiMenu-paper {
+        transform: translate(0px, 2px) !important;
+    }
+    .MuiList-root {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+}
+.lightThemeSelect {
+    .MuiInputBase-input {
+        border: 0px solid #000 !important;
+        background-color: white !important;
+        color: black !important;
+    }
+}

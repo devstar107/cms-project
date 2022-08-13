@@ -1,0 +1,75 @@
+@import '../../assets/scss/variables';
+
+.slider {
+    //padding: 0 1em;
+    user-select: none;
+    //width: 100%;
+    margin-top: 2rem;
+
+    &_comment-icon {
+        position: relative;
+        img#icon {
+            position: absolute;
+            z-index: -1;
+            width: 5em; // it should equal span comments
+        }
+    }
+    &_photos {
+        position: relative;
+    }
+    &_photo {
+        width: 100%;
+        display: block;
+
+        &-hide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: -1;
+        }
+        &-drawing {
+            cursor: url('../../assets/png/pencil-cursor.png') 0 16, auto;
+        }
+    }
+
+    &_comment {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        max-width: 35rem;
+        &_heading {
+            font-size: 1.2rem;
+            color: #002856;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        &_comment-list {
+            padding: 0 4rem;
+        }
+        &_comment-text {
+            width: 30rem;
+
+            @media (max-width: 613px) {
+                width: 100%;
+                min-width: 20rem;
+            }
+            .chip {
+                padding-bottom: 1rem;
+            }
+        }
+        .next-wrapper {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            .next-button {
+                background-color: #002856;
+                padding: 6px 1.5rem;
+                color: white;
+                border-radius: 1rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+################################################################################
+# Stage build
+FROM node:16-bullseye AS build
+ENV NODE_ENV=development
+ENV HOST=0.0.0.0
+ENV PORT=8080
+
+WORKDIR /code
+
+# Install app dependencies
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
+
+# copy code
+COPY . .
+RUN cp env.local.txt .env
+# RUN yarn build
+
+EXPOSE 8080
+CMD ["yarn", "run", "react-scripts", "start"]

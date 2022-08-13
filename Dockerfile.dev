@@ -1,0 +1,28 @@
+################################################################################
+# Stage build
+FROM node:16-bullseye AS build
+ENV NODE_ENV=production
+
+WORKDIR /code
+
+# Install app dependencies
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
+
+# copy code
+COPY . .
+RUN cp env.dev.txt .env
+RUN yarn build
+
+################################################################################
+# Stage dev
+FROM nginxinc/nginx-unprivileged as dev
+ENV NODE_ENV=production
+
+WORKDIR /code
+
+COPY --from=build /code/nginx.conf /etc/nginx/conf.d/web.conf
+COPY --from=build /code/build /usr/share/nginx/html
+
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]

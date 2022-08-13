@@ -1,0 +1,97 @@
+image: atlassian/default-image:3
+
+options:
+  size: 2x
+
+definitions:
+  services:
+    docker:
+      memory: 4096
+
+pipelines:
+  branches:
+    dev:
+      - step:
+          name: Build Docker & Push to AWS ECR
+          script:
+            - IMAGE_NAME=cms-ui
+            - docker build . -f Dockerfile.dev --target dev -t ${IMAGE_NAME}
+            - docker tag ${IMAGE_NAME} ${IMAGE_NAME}:dev-latest
+            - pipe: atlassian/aws-ecr-push-image:1.5.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                IMAGE_NAME: $IMAGE_NAME
+                TAGS: 'dev-latest'
+          services:
+            - docker
+          caches:
+            - docker
+      - step:
+          name: Deploy to dev
+          script:
+            - pipe: atlassian/trigger-pipeline:5.0.0
+              variables:
+                BITBUCKET_USERNAME: $BITBUCKET_USERNAME
+                BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+                REPOSITORY: 'kube'
+                REF_NAME: 'main'
+                WAIT: 'true'
+                CUSTOM_PIPELINE_NAME: 'dev-reload-cms-ui'
+      - step:
+          name: Cypress Testing
+          script:
+            - IMAGE_NAME=cms-ui-test
+            - PUBLIC_URL=https://cms-staging.thedigigi.net
+            - docker build . -f Dockerfile.test -t ${IMAGE_NAME}
+            - docker run --rm ${IMAGE_NAME}:latest make lint
+            - echo $PUBLIC_URL
+            - docker run -e PUBLIC_URL=${PUBLIC_URL} --rm ${IMAGE_NAME}:latest yarn test-cypress
+          services:
+            - docker
+          caches:
+            - docker
+    main:
+      - step:
+          name: Build Docker & Push to AWS ECR
+          script:
+            - IMAGE_NAME=cms-ui
+            - docker build . -f Dockerfile.prod --target prod -t ${IMAGE_NAME}
+            - docker tag ${IMAGE_NAME} ${IMAGE_NAME}:prod-latest
+            - docker tag ${IMAGE_NAME} ${IMAGE_NAME}:latest
+            - pipe: atlassian/aws-ecr-push-image:1.5.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                IMAGE_NAME: $IMAGE_NAME
+                TAGS: 'prod-latest latest'
+          services:
+            - docker
+          caches:
+            - docker
+      - step:
+          name: Deploy to prod
+          script:
+            - pipe: atlassian/trigger-pipeline:5.0.0
+              variables:
+                BITBUCKET_USERNAME: $BITBUCKET_USERNAME
+                BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+                REPOSITORY: 'kube'
+                REF_NAME: 'main'
+                WAIT: 'true'
+                CUSTOM_PIPELINE_NAME: 'prod-reload-cms-ui'
+      - step:
+          name: Cypress Testing
+          script:
+            - IMAGE_NAME=cms-ui-test
+            - PUBLIC_URL=https://cms.digital-giant.com
+            - docker build . -f Dockerfile.test -t ${IMAGE_NAME}
+            - docker run --rm ${IMAGE_NAME}:latest make lint
+            - echo $PUBLIC_URL
+            - docker run -e PUBLIC_URL=${PUBLIC_URL} --rm ${IMAGE_NAME}:latest yarn test-cypress
+          services:
+            - docker
+          caches:
+            - docker

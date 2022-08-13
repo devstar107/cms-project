@@ -1,0 +1,19 @@
+# Stage test
+################################################################################
+FROM cypress/browsers:node16.13.2-chrome100-ff98
+ENV CI=1
+
+WORKDIR /code
+
+# Install app dependencies
+COPY package.json yarn.lock ./
+RUN yarn install --check-files --frozen-lockfile
+RUN npx cypress verify
+
+# copy code
+COPY . .
+RUN cp env.test.txt .env
+# RUN yarn build
+
+EXPOSE 3000
+CMD ["yarn", "run", "react-scripts", "start", "-H", "0.0.0.0", "-p", "3000"]

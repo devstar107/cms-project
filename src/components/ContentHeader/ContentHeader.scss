@@ -1,0 +1,22 @@
+.header {
+    width: 100%;
+    margin-bottom: 0.5em;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    border: grey 1px solid;
+    border-left-width: 0px;
+
+    &_projectName p {
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        color: #929497;
+    }
+    &_status p {
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        color: #929497;
+    }
+}
